@@ -1,0 +1,17 @@
+{
+  "name": "Your Name",
+  "bio": "Digital creator | Night owl | Building cool stuff",
+  "location": "Your City, Your Country",
+  "links": [
+    {
+      "title": "Instagram",
+      "url": "https://instagram.com/",
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+    },
+    {
+      "title": "GitHub",
+      "url": "https://github.com/",
+      "icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+    }
+  ]
+}
