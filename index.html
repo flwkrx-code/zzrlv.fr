@@ -3,36 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>My Social Links 🌙</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #8da0ff 0%, #ffe3e3 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      color: #333;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin: 0.3rem 0 1.5rem;
+      color: #555;
+    }
+
+    .links a {
+      display: block;
+      margin: 0.6rem 0;
+      padding: 0.8rem 1rem;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .links a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-  <div class="background"></div>
-  <div class="content">
-    <img src="banner.png" alt="Banner" class="banner" />
-    <h1 id="name"></h1>
-    <p id="bio"></p>
-    <p id="location"></p>
-    <div class="links" id="links"></div>
+  <div class="card">
+    <img src="4a8acbb2471866ac871d60979274e9b0.png" alt="Profile Picture" class="profile-pic">
+    <h1>Your Name 🌸</h1>
+    <p>@yourhandle</p>
+
+    <div class="links">
+      <a href="https://instagram.com" target="_blank">🌈 Instagram</a>
+      <a href="https://tiktok.com" target="_blank">🎵 TikTok</a>
+      <a href="https://youtube.com" target="_blank">📺 YouTube</a>
+      <a href="https://twitter.com" target="_blank">💬 X / Twitter</a>
+    </div>
   </div>
 
-  <script>
-    async function loadData() {
-      const res = await fetch("../data.json");
-      const data = await res.json();
-      document.getElementById("name").innerText = data.name;
-      document.getElementById("bio").innerText = data.bio;
-      document.getElementById("location").innerText = data.location;
-      const linksDiv = document.getElementById("links");
-      data.links.forEach(link => {
-        const a = document.createElement("a");
-        a.href = link.url;
-        a.target = "_blank";
-        a.innerHTML = `<img src="${link.icon}" alt="${link.title}" /><span>${link.title}</span>`;
-        linksDiv.appendChild(a);
-      });
-    }
-    loadData();
-  </script>
+  <footer>made with 💖 for the internet</footer>
 </body>
 </html>
