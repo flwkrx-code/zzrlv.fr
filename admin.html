@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"></script>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="admin">
+    <h1>Admin Dashboard</h1>
+
+    <div id="login-section">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button id="loginBtn">Login</button>
+      <button id="googleBtn">Login with Google</button>
+    </div>
+
+    <div id="editor" class="hidden">
+      <h2>Edit Profile</h2>
+      <input id="name" placeholder="Name" />
+      <input id="bio" placeholder="Bio" />
+      <input id="location" placeholder="Location" />
+      <h3>Links</h3>
+      <div id="links"></div>
+      <button id="addLink">Add Link</button>
+      <button id="saveBtn">Save Changes</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    // --- Firebase Setup ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+    // TODO: paste your Firebase config here
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_BUCKET",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const loginSection = document.getElementById("login-section");
+    const editor = document.getElementById("editor");
+
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, pass).catch(err => alert(err.message));
+    });
+
+    document.getElementById("googleBtn").addEventListener("click", () => {
+      signInWithPopup(auth, provider).catch(err => alert(err.message));
+    });
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        loginSection.classList.add("hidden");
+        editor.classList.remove("hidden");
+      } else {
+        editor.classList.add("hidden");
+        loginSection.classList.remove("hidden");
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => signOut(auth));
+  </script>
+</body>
+</html>
